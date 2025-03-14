@@ -57,11 +57,36 @@ The main source file src/progcontrol.cpp includes:
 - Functions to display compilation information.
 - Console interface for interaction.
 
-## Usage
-After building and installing, you can run the prog_control executable from the installation directory.
+### Run the Program
 
-```bash
-./install/<Debug|Release>/bin/prog_control
+```sh
+install/debug/bin/prog_control -t system -n 1 -c ./config.conf
 ```
+
+## Examples of command line usage of the sample program
+
+```sh
+ install/debug/bin/prog_control -l file # logging to file
+ install/debug/bin/prog_control -c path/to/ConfigFile.conf -t system -l file
+
+```
+### System process configuration file
+
+The system process configuration file specifies the system process executable and its parameters. A sample configuration file might look like this:
+```sh
+process_file=/Users/jrivero/dev/programs/testprogs/progcontrol/lenghty_process.sh
+s=10
+v=1
+#username=admin
+#password=securepassword123
+#server=localhost
+#port=8080
+#database=mydatabase
+#max_connections=77
+#timeout=33
+#log_level=debug
+
+```
+
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
