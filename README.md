@@ -1,12 +1,48 @@
 # ProgControl
 
 ProgControl is a C++ project designed to manage and monitor processes. It includes custom process and monitor implementations and provides a console interface for interaction.
+This guide provides a walkthrough for setting up a new project, `prog_control`, that leverages the `ProcessControllerLib` library. In this example, you'll learn how to extend the `Process` and `ProcessMonitor` classes to create custom process and monitor implementations. It also shows you how to spawn external processes to monitor, specifically those requiring a configuration file.
+
+Notably, the code for extending these classes is straightforward, demonstrating how easily you can build upon the base classes. By overriding or implementing the necessary methods, you can customize the behavior as needed. Otherwise, due to polymorphism, the derived classes will function like standard `Process` and `ProcessMonitor` classes, ensuring seamless integration and behavior consistency.
 
 ## Requirements
 
 - CMake 3.30 or higher
 - A C++20 compatible compiler (e.g., AppleClang 16.0.0)
 - Bash shell
+- **Compile the Secure Process Manager Library**: Make sure the library is compiled by running the `build.sh` script in the `ProcessController` directory.
+- **Install the Secure Process Manager Library**: Ensure the library is installed by executing the same `build.sh` script in the `ProcessController` directory.
+- **Create the Sample Program Directory Structure**: Set up the directory structure for the sample program.
+- **Create the Sample Program CMake File**: Create a CMake file for the sample program.
+- **Ensure your include and library paths are consistent with the installation directory**. See the CMake file below.
+
+## Get the code
+
+```bash
+git clone git@github.com:jaguarRiveroCisco/progcontrol.git
+cd progcontrol
+```
+
+The most important part is the extension of Process and ProcessMonitor, and the initialization of the controller with the new types.
+
+```cpp
+
+#include "process/process.h"
+#include "processmonitors/process_monitor.h"
+struct CustomMonitor final : process::ProcessMonitor
+{
+};
+
+struct CustomProcess final : process::Process
+{
+
+};
+
+...
+    // Initialize controller with new type and number of processes
+    api::registerHandler<CustomMonitor,CustomProcess>(processType);
+
+```
 
 ## Project Structure
 
