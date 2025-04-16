@@ -30,9 +30,15 @@ echo "BUILD_TYPE_LOWER: $BUILD_TYPE_LOWER"
 echo "BUILD_DIR: $BUILD_DIR"
 echo "INSTALL_TO: $INSTALL_TO"
 
-# Run CMake and build the project
+# Path to toolchain file
+TOOLCHAIN_FILE="/data/dev/umbrella-mgmt-agent-fnv4/cmake/toolchain.cmake"
+echo "Using toolchain file: $TOOLCHAIN_FILE"
+
+# Run CMake and build the project with toolchain file
 cmake -S . -B "$BUILD_DIR" -DCMAKE_BUILD_TYPE="$BUILD_TYPE" \
-  -DINSTALLATION_PATH="$INSTALL_PATH/$BUILD_TYPE_LOWER" -DCMAKE_INSTALL_PREFIX="$INSTALL_TO"
+  -DINSTALLATION_PATH="$INSTALL_PATH/$BUILD_TYPE_LOWER" \
+  -DCMAKE_INSTALL_PREFIX="$INSTALL_TO" \
+  -DCMAKE_TOOLCHAIN_FILE="$TOOLCHAIN_FILE"
 
 cmake --build "$BUILD_DIR" --target prog_control -j 6
 

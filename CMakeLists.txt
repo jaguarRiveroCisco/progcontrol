@@ -3,6 +3,9 @@ project(ProgControl)
 
 set(CMAKE_CXX_STANDARD 20)
 
+# Find Threads package (needed for Threads::Threads target)
+find_package(Threads REQUIRED)
+
 # Use the installation path for include and library directories
 set(BASE_INCLUDE_DIR ${INSTALLATION_PATH}/include)
 set(BASE_LIB_DIR ${INSTALLATION_PATH}/lib)
@@ -36,7 +39,11 @@ else()
         link_directories(${BASE_LIB_DIR})
 endif()
 
-target_link_libraries(prog_control PRIVATE SecureProcessManagerLib)
+target_link_libraries(prog_control PRIVATE 
+                     SecureProcessManagerLib
+                     Threads::Threads  # pthread
+                     rt                # realtime library for semaphores
+                     )
 
 # Add installation rules
 install(TARGETS prog_control
