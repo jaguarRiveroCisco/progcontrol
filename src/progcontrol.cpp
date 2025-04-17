@@ -1,5 +1,5 @@
 
-#include "api/api.h"
+#include "api/pmapi.h"
 #include "consolecontroller/console.h"
 
 #include "process/process.h"
@@ -40,13 +40,13 @@ auto main(int argc, char *argv[]) -> int
     cli::driver::printCommands(); // Call to printHelp
 
     // Initialize controller with new type and number of processes
-    api::registerHandler<CustomMonitor,CustomProcess>(processType);
+    pmapi::registerHandler<CustomMonitor,CustomProcess>(processType);
 
-    api::initialize(numProcesses, processType);
+    pmapi::initialize(numProcesses, processType);
 
     cli::driver::consoleLoop();
 
-    api::execute();
+    pmapi::execute();
 
     cli::driver::consoleLoop(false);
 
