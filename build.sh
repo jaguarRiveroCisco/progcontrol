@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
 
-# Check if enough arguments are provided
-if [ $# -lt 2 ]; then
-  echo "Usage: $0 <Debug|Release> <path-to-installation>"
-  exit 1
-fi
-
-# Set the build type and installation path based on arguments
-BUILD_TYPE=$1
-INSTALL_PATH=$2
+# Set default values if parameters are not provided
+BUILD_TYPE=${1:-Release}
+INSTALL_PATH=${2:-/data/dev/umbrella-mgmt-agent-fnv4/git-import/Build}
 
 # Convert the build type argument to lowercase for easier comparison
 BUILD_TYPE_LOWER=$(echo "$BUILD_TYPE" | tr '[:upper:]' '[:lower:]')
