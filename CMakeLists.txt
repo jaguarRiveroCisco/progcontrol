@@ -16,20 +16,6 @@ add_executable(prog_control src/progcontrol.cpp)
 # Include directories specific to the target
 target_include_directories(prog_control PRIVATE
                            ${BASE_INCLUDE_DIR}
-                           ${BASE_INCLUDE_DIR}/consolecontroller
-                           ${BASE_INCLUDE_DIR}/maincontroller
-                           ${BASE_INCLUDE_DIR}/processcontroller
-                           ${BASE_INCLUDE_DIR}/processmonitors
-                           ${BASE_INCLUDE_DIR}/process
-                           ${BASE_INCLUDE_DIR}/process/networkprocess
-                           ${BASE_INCLUDE_DIR}/process/systemprocess
-                           ${BASE_INCLUDE_DIR}/concurrency
-                           ${BASE_INCLUDE_DIR}/tools
-                           ${BASE_INCLUDE_DIR}/logger
-                           ${BASE_INCLUDE_DIR}/networkprocess
-                           ${BASE_INCLUDE_DIR}/systemprocess
-                           ${BASE_INCLUDE_DIR}/config
-                           ${BASE_INCLUDE_DIR}/api
                            )
 
 # Link directories and libraries specific to the target
