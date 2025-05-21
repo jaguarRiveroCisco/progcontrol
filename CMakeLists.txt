@@ -31,12 +31,20 @@ else()
         link_directories(${BASE_LIB_DIR})
 endif()
 
+if (APPLE)
 target_link_libraries(prog_control PRIVATE 
-        ${BASE_LIB_DIR}/libSecureProcessManagerLib.a
-        ${BASE_LIB_DIR}/libLoggerLib.a                     
-                     Threads::Threads  # pthread
-                     rt                # realtime library for semaphores
-                     )
+${BASE_LIB_DIR}/libSecureProcessManagerLib.a
+${BASE_LIB_DIR}/libLoggerLib.a                     
+        Threads::Threads  # pthread
+        )
+else()
+        target_link_libraries(prog_control PRIVATE 
+                ${BASE_LIB_DIR}/libSecureProcessManagerLib.a
+                ${BASE_LIB_DIR}/libLoggerLib.a                     
+                        Threads::Threads  # pthread
+                        rt                # realtime library for semaphores
+                        )
+endif()
 
 # Add installation rules
 install(TARGETS prog_control
