@@ -1,4 +1,5 @@
 
+#include "api/logapi.h"
 #include "api/pmapi.h"
 #include "consolecontroller/console.h"
 
@@ -26,6 +27,7 @@ void displayCompilationInfo(const char *appName)
 
 auto main(int argc, char *argv[]) -> int
 {
+    Log::init("console");
 
     displayCompilationInfo(argv[0]);
 
@@ -42,7 +44,7 @@ auto main(int argc, char *argv[]) -> int
     // Initialize controller with new type and number of processes
     pmapi::registerHandler<CustomMonitor,CustomProcess>(processType);
 
-    pmapi::initialize(numProcesses, processType);
+    pmapi::configureProcessManagerPool(numProcesses, processType);
 
     cli::driver::consoleLoop();
 
